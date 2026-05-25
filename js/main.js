@@ -225,7 +225,7 @@ cmds.whoami = function() {
 <div class="about-block">
   <p><span class="em">Prateek Sharma</span> — cybersecurity & <span class="em">digital forensics</span> student at <span class="tech">VIT Bhopal</span>.</p>
   <p>I breathe <span class="em">Linux</span>. My terminal is my sanctuary, my shell is my weapon. From <span class="tech">OSINT</span> recon to <span class="tech">network security</span> hardening, from <span class="tech">cloud security</span> to <span class="tech">penetration testing</span> — I live in the grey areas of the digital world.</p>
-  <p>But my mind doesn't stop at 0s and 1s. I'm an <span class="auto">automobile god</span> — I know more about cars, engines, and automotive tech than anyone I've met. <span class="auto">Lexus LFA</span> with that V10 symphony is perfection on wheels. I'm also a <span class="auto">firearms enthusiast</span>, a master <span class="tech">conversationist</span>, and someone who knows a little about everything on this planet.</p>
+  <p>Beyond the terminal, I bring the same precision to <span class="auto">automotive engineering</span> — deep knowledge of engines, chassis dynamics, and what makes a machine truly great. The <span class="auto">Lexus LFA</span> and its V10 symphony represent everything I respect: form, function, and raw craftsmanship. I'm also a <span class="auto">firearms enthusiast</span> with a focus on mechanics and ballistics, and maintain a broad curiosity that spans technology, engineering, and beyond.</p>
   <p><span class="em">Perfectionist.</span> <span class="em">Builder.</span> <span class="em">Root access to life.</span></p>
 </div>
 <div class="about-card-inline">
