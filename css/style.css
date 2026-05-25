@@ -460,21 +460,14 @@ a { color: inherit; text-decoration: none; }
   font-family: 'JetBrains Mono', monospace;
   font-size: 13px;
   outline: none;
-  caret-color: transparent;
+  caret-color: var(--text);
 }
 
 #cmd-cursor {
-  display: inline-block;
-  width: 8px; height: 16px;
-  background: var(--text);
-  animation: blink 1s step-end infinite;
-  margin-left: -2px;
+  display: none;
 }
 
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
-}
+
 
 /* ===== SUGGESTIONS ===== */
 #suggestions {
