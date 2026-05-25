@@ -17,6 +17,18 @@ let clickCount = 0;
 let history = [];
 let historyIdx = -1;
 let suggestIdx = -1;
+const GITHUB_REPOS = { hyprconf2lua: 'Prateek-squadron/hyprconf2lua' };
+const repoStarEls = {};
+
+function fetchLiveStars(repoKey) {
+  const repo = GITHUB_REPOS[repoKey];
+  if (!repo) return;
+  fetch('https://api.github.com/repos/' + repo)
+    .then(r => r.ok ? r.json() : Promise.reject())
+    .then(d => { const el = document.getElementById('star-count'); if (el) el.textContent = d.stargazers_count; })
+    .catch(() => {});
+}
+
 const commandList = ['whoami', 'skills', 'projects', 'contact', 'neofetch', 'help', 'banner', 'date', 'matrix', 'engine', 'gun', 'sudo', 'clear'];
 
 const cmdDescriptions = {
@@ -328,7 +340,7 @@ cmds.projects = function() {
     <span class="featured-badge">★ featured</span>
     <h3>hyprconf2lua</h3>
     <div class="project-desc">Convert Hyprland .conf to Lua for v0.55+ — ~97% auto-conversion, 0% guesswork. Used by the Omarchy community.</div>
-    <div class="project-meta"><span class="lang">🐍 Python</span> &nbsp; <span class="stars">★ 15</span></div>
+    <div class="project-meta"><span class="lang">🐍 Python</span> &nbsp; <span class="stars" id="stars-hyprconf2lua">★ <span id="star-count">17</span></span></div>
     <a class="project-link" href="https://github.com/Prateek-squadron/hyprconf2lua" target="_blank">▸ view on github</a>
   </div>
 </div>
@@ -340,6 +352,8 @@ cmds.projects = function() {
     opacity: [0, 1], translateY: [15, 0],
     duration: 600, delay: anime.stagger(100), easing: 'easeOutCubic'
   });
+
+  fetchLiveStars('hyprconf2lua');
 
   scrollBottom();
 };
@@ -629,20 +643,32 @@ cmds.gun = function(count) {
 <div style="background:var(--surface2);border:1px solid var(--gold);border-radius:6px;padding:14px 18px;margin:4px 0;">
   <div style="color:var(--gold);font-weight:700;margin-bottom:8px;text-align:center;">━━━ COLT 1911 .45 ACP ━━━</div>
   <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap;">
-    <pre style="color:var(--text-dim);font-size:10px;line-height:1.2;flex-shrink:0;">
-       ___________
-      /__________/|
-     |  _______  ||
-     | |       | ||
-     | |  LOAD | ||
-     | |_______| ||
-     |___________|/
-      \\_________/ 
-       | |   | |
-       | |   | |
-    ___|_|___|_|___
-   /_______________/
-   \\_______________/
+    <pre style="color:var(--text-dim);font-size:10px;line-height:1.1;flex-shrink:0;">
+      ,--_______________
+     /  /______________/|
+    /  /_______________||
+   /  /_______________/||
+  /  /_______________/ ||
+ /  /_______________/  ||
+|  /_______________/   ||
+| /                 /  ||
+|/_________________/  //
+|   ____  ____  ____  //
+|  | __||| __||| __| //
+|  ||__| ||__| ||__| //
+|  | ____||____||   |//
+|  ||___||____||___|/
+|  |____|____|____|
+|  | __    __    __|
+|  ||__|  |__|  |
+|  |      |     |
+|  |      |     |
+|  |      |     |
+|  |      |     |
+|  |      |     |
+|  |______|     |
+|  |____________|
+|__/
     </pre>
     <div style="flex:1;min-width:160px;">
       <div style="color:var(--red);font-size:11px;margin-bottom:6px;">
