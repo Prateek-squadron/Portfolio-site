@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>PATRIXX SHELL v2.0 — Prateek Sharma</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div id="boot-screen">
+  <div id="boot-content">
+    <pre id="boot-ascii">
+██████╗   █████╗  ████████╗ ██████╗  ██╗ ██╗  ██╗ ██╗  ██╗
+██╔══██╗ ██╔══██╗ ╚══██╔══╝ ██╔══██╗ ██║ ╚██╗██╔╝ ╚██╗██╔╝
+██████╔╝ ██████╔╝    ██║    ██████╔╝ ██║  ╚███╔╝   ╚███╔╝
+██╔═══╝  ██╔══██╗    ██║    ██╔══██╗ ██║  ██╔██╗   ██╔██╗
+██║      ██║  ██║    ██║    ██║  ██║ ██║ ██╔╝ ██╗ ██╔╝ ██╗
+╚═╝      ╚═╝  ╚═╝    ╚═╝    ╚═╝  ╚═╝ ╚═╝ ╚═╝  ╚═╝ ╚═╝  ╚═╝
+    </pre>
+    <div id="boot-version">PATRIXX SHELL v2.0 — Secure Boot</div>
+    <div id="boot-bar-bg"><div id="boot-bar"></div></div>
+    <div id="boot-messages"></div>
+  </div>
+</div>
+
+<div id="glitch-overlay"></div>
+<canvas id="matrix-canvas"></canvas>
+
+<div id="main-ui">
+  <canvas id="particle-canvas"></canvas>
+  <div id="scanlines"></div>
+  <div id="terminal">
+    <div id="terminal-header">
+      <span class="term-dot red"></span>
+      <span class="term-dot yellow"></span>
+      <span class="term-dot green"></span>
+      <span id="terminal-title"><span class="highlight">●</span> patrixx@portfolio: ~</span>
+    </div>
+    <div id="terminal-body">
+      <div id="terminal-output"></div>
+      <div id="suggestions"></div>
+      <div id="cmd-bar">
+        <span id="cmd-prompt">patrixx@portfolio:~$</span>
+        <input type="text" id="cmd-input" spellcheck="false" autocomplete="off" autofocus>
+        <span id="cmd-cursor"></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
