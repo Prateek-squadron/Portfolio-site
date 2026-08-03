@@ -340,7 +340,7 @@ cmds.projects = function() {
     <span class="featured-badge">★ featured</span>
     <h3>hyprconf2lua</h3>
     <div class="project-desc">Convert Hyprland .conf to Lua for v0.55+ — ~97% auto-conversion, 0% guesswork. Used by the Arch community.</div>
-    <div class="project-meta"><span class="lang">🐍 Python</span> &nbsp; <span class="stars" id="stars-hyprconf2lua">★ <span id="star-count">17</span></span></div>
+    <div class="project-meta"><span class="lang">🐍 Python</span> &nbsp; <span class="stars" id="stars-hyprconf2lua">★ <span id="star-count">68</span></span></div>
     <a class="project-link" href="https://github.com/Prateek-squadron/hyprconf2lua" target="_blank">▸ view on github</a>
   </div>
 </div>
