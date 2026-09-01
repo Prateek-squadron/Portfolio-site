@@ -29,7 +29,7 @@ function fetchLiveStars(repoKey) {
     .catch(() => {});
 }
 
-const commandList = ['whoami', 'skills', 'projects', 'contact', 'neofetch', 'help', 'banner', 'date', 'matrix', 'engine', 'gun', 'sudo', 'clear'];
+const commandList = ['whoami', 'skills', 'projects', 'contact', 'neofetch', 'help', 'banner', 'date', 'theme', 'donut', 'dvd', 'matrix', 'engine', 'gun', 'sudo', 'clear'];
 
 const cmdDescriptions = {
   whoami: 'about me',
@@ -40,6 +40,9 @@ const cmdDescriptions = {
   help: 'this menu',
   banner: 'show header',
   date: 'current time',
+  theme: 'change system colors [cyber/matrix/default]',
+  donut: '✨ pure mathematical magic',
+  dvd: '✨ nostalgic bouncing',
   matrix: '🥚 enter the matrix',
   engine: '🥚 rev it up',
   gun: '🥚 1911 — fire!',
@@ -768,6 +771,150 @@ cmds.sudo = function() {
   scrollBottom();
 };
 
+cmds.theme = function(tName) {
+  const root = document.documentElement;
+  const block = document.createElement('div');
+  block.className = 'output-block';
+  
+  if (tName === 'cyber' || tName === 'synthwave') {
+    root.style.setProperty('--bg', '#0b0c10');
+    root.style.setProperty('--surface', '#1f2833');
+    root.style.setProperty('--surface2', '#242f3d');
+    root.style.setProperty('--border', '#45a29e');
+    root.style.setProperty('--red', '#f64c72');
+    root.style.setProperty('--cyan', '#45a29e');
+    root.style.setProperty('--green', '#2e9cca');
+    root.style.setProperty('--gold', '#ffb703');
+    root.style.setProperty('--text', '#c5c6c7');
+    root.style.setProperty('--text-dim', '#888888');
+    block.innerHTML = `<div style="color:var(--cyan);font-size:13px;padding:4px 0;">Theme switched to: CYBER SYNTHWAVE 🌆</div>`;
+  } else if (tName === 'matrix' || tName === 'hacker') {
+    root.style.setProperty('--bg', '#000000');
+    root.style.setProperty('--surface', '#050505');
+    root.style.setProperty('--surface2', '#0a0a0a');
+    root.style.setProperty('--border', '#003300');
+    root.style.setProperty('--red', '#00ff41');
+    root.style.setProperty('--cyan', '#00ff41');
+    root.style.setProperty('--green', '#00ff41');
+    root.style.setProperty('--gold', '#00ff41');
+    root.style.setProperty('--text', '#00ff41');
+    root.style.setProperty('--text-dim', '#008800');
+    block.innerHTML = `<div style="color:var(--green);font-size:13px;padding:4px 0;">Theme switched to: MATRIX TERMINAL 🟩</div>`;
+  } else {
+    // Default
+    root.style.setProperty('--bg', '#0a0a0a');
+    root.style.setProperty('--surface', '#121212');
+    root.style.setProperty('--surface2', '#1a1a1a');
+    root.style.setProperty('--border', '#2a2a2a');
+    root.style.setProperty('--red', '#e63946');
+    root.style.setProperty('--cyan', '#00f0ff');
+    root.style.setProperty('--green', '#00ff41');
+    root.style.setProperty('--gold', '#ffd166');
+    root.style.setProperty('--text', '#e0e0e0');
+    root.style.setProperty('--text-dim', '#888888');
+    block.innerHTML = `<div style="color:var(--red);font-size:13px;padding:4px 0;">Theme switched to: DEFAULT RED 🔴</div>`;
+  }
+  output.appendChild(block);
+  anime({ targets: block, opacity: [0, 1], duration: 400, easing: 'easeOutCubic' });
+  scrollBottom();
+};
+
+cmds.donut = function() {
+  const block = document.createElement('div');
+  block.className = 'output-block';
+  block.innerHTML = `<pre id="donut-pre-${Date.now()}" style="color:var(--cyan);font-size:10px;line-height:1.0;overflow:hidden;"></pre>`;
+  output.appendChild(block);
+  
+  const pre = block.querySelector('pre');
+  let A = 1, B = 1;
+  const donutInterval = setInterval(() => {
+    let b = [];
+    let z = [];
+    A += 0.07;
+    B += 0.03;
+    let cA = Math.cos(A), sA = Math.sin(A),
+        cB = Math.cos(B), sB = Math.sin(B);
+    for (let k = 0; k < 1760; k++) {
+      b[k] = k % 80 === 79 ? '\\n' : ' ';
+      z[k] = 0;
+    }
+    for (let j = 0; j < 6.28; j += 0.07) {
+      let ct = Math.cos(j), st = Math.sin(j);
+      for (let i = 0; i < 6.28; i += 0.02) {
+        let sp = Math.sin(i), cp = Math.cos(i),
+            h = ct + 2,
+            D = 1 / (sp * h * sA + st * cA + 5),
+            t = sp * h * cA - st * sA;
+        let x = Math.floor(40 + 30 * D * (cp * h * cB - t * sB)),
+            y = Math.floor(12 + 15 * D * (cp * h * sB + t * cB)),
+            o = x + 80 * y,
+            N = Math.floor(8 * ((st * sA - sp * ct * cA) * cB - sp * ct * sA - st * cA - cp * ct * sB));
+        if (y < 22 && y >= 0 && x >= 0 && x < 79 && D > z[o]) {
+          z[o] = D;
+          b[o] = ".,-~:;=!*#$@"[N > 0 ? N : 0];
+        }
+      }
+    }
+    pre.innerHTML = b.join('');
+  }, 50);
+
+  setTimeout(() => clearInterval(donutInterval), 15000);
+  scrollBottom();
+};
+
+let dvdInterval = null;
+cmds.dvd = function() {
+  if (dvdInterval) {
+    clearInterval(dvdInterval);
+    dvdInterval = null;
+    const term = document.getElementById('terminal');
+    term.style.transform = 'translateY(0)';
+    term.style.position = 'relative';
+    term.style.left = 'auto';
+    term.style.top = 'auto';
+    term.style.margin = '5vh auto';
+    term.style.borderColor = 'var(--border)';
+    const block = document.createElement('div');
+    block.className = 'output-block';
+    block.innerHTML = `<div style="color:var(--green);font-size:13px;padding:4px 0;">DVD mode deactivated.</div>`;
+    output.appendChild(block);
+    scrollBottom();
+    return;
+  }
+  const term = document.getElementById('terminal');
+  term.style.position = 'fixed';
+  term.style.margin = '0';
+  term.style.transform = 'none';
+  let x = term.offsetLeft, y = term.offsetTop;
+  let vx = 3, vy = 3;
+  const colors = ['#e63946', '#00f0ff', '#00ff41', '#ffd166', '#ffb703', '#f64c72'];
+  let colIdx = 0;
+  
+  const block = document.createElement('div');
+  block.className = 'output-block';
+  block.innerHTML = `<div style="color:var(--cyan);font-size:13px;padding:4px 0;">DVD mode activated! Type 'dvd' again to stop.</div>`;
+  output.appendChild(block);
+  scrollBottom();
+
+  dvdInterval = setInterval(() => {
+    let rect = term.getBoundingClientRect();
+    if (x <= 0 || x + rect.width >= window.innerWidth) {
+      vx = -vx;
+      colIdx = (colIdx + 1) % colors.length;
+      term.style.borderColor = colors[colIdx];
+    }
+    if (y <= 0 || y + rect.height >= window.innerHeight) {
+      vy = -vy;
+      colIdx = (colIdx + 1) % colors.length;
+      term.style.borderColor = colors[colIdx];
+    }
+    x += vx;
+    y += vy;
+    term.style.left = x + 'px';
+    term.style.top = y + 'px';
+  }, 16);
+};
+
 cmds.clear = function() {
   output.innerHTML = '';
   suggestions.classList.remove('show');
@@ -789,6 +936,9 @@ function dispatchCmd(cmd) {
   } else if (trimmed.startsWith('gun ')) {
     const n = trimmed.split(' ')[1];
     setTimeout(() => cmds.gun(n), 150);
+  } else if (trimmed.startsWith('theme ')) {
+    const t = trimmed.split(' ')[1];
+    setTimeout(() => cmds.theme(t), 150);
   } else if (trimmed.startsWith('sudo ')) {
     setTimeout(() => cmds.sudo(), 150);
   } else {
